@@ -1,0 +1,274 @@
+/* 改变主题色变量 */
+// $--color-primary: teal;
+/* Dialog
+-------------------------- */
+$--dialog-background-color: transparent;
+
+// 不确定对应哪个变量颜色
+// $--tree-node-hover-background-color:linear-gradient(90deg, #162cad 0%, #022479 100%);
+
+/* Table
+-------------------------- */
+$--table-font-color: #75b1f7;
+$--table-header-font-color: #75b1f7;
+$--table-row-hover-background-color: #293b7b;
+$--table-current-row-background-color: #293b7b;
+$--table-header-background-color: rgba(18, 40, 138, 0.5) !important;
+// $--table-header-background-color:linear-gradient(180deg, rgba(52, 65, 131,.5) 0%, rgba(28, 43, 148,.5) 100%) !important;
+
+/* Input
+-------------------------- */
+$--input-font-size: 20px !important; //?
+$--input-font-color: #e1e9ff;
+// $--input-border-color:#5D95FF !important;
+$--input-background-color: #2d53bd;
+// $--input-border:none !important;
+// $--input-placeholder-color:#8BEAFF;
+
+/* Select
+-------------------------- */
+$--select-option-color: #fff;
+$--select-option-hover-background: #1d72cb;
+$--select-dropdown-background: #2d53bd;
+$--select-dropdown-border: none;
+
+/* Cascader
+-------------------------- */
+$--cascader-menu-font-color: #fff;
+$--cascader-menu-fill: #2d53bd;
+$--cascader-menu-border: none;
+$--cascader-node-background-hover: #1d72cb;
+$--cascader-tag-background: red;
+
+/* DatePicker
+--------------------------*/
+// $--datepicker-font-color:#fff;
+$--datepicker-off-font-color: #739eff;
+$--datepicker-icon-color: #fff;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+
+@import "~element-ui/packages/theme-chalk/src/index";
+// ?要放在引用的下面才有用
+// *el-dialog
+.el-dialog {
+  background: url("~assets/image/dialogBg.png") no-repeat center/100% 100%;
+  // mix-blend-mode: screen;
+  padding: 30px 103px 18px 83px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // margin-top:15vh 是style优先级高的，只能用!important
+  margin-top: 0 !important;
+}
+.el-dialog__wrapper {
+  /* 只能遮罩层透明--但里面内容也会透明 */
+  mix-blend-mode: screen;
+}
+.el-dialog__headerbtn {
+  top: 42px;
+  right: 132px;
+  i {
+    display: none;
+  }
+}
+.el-dialog__title {
+  color: #75b1f7;
+}
+.v-modal {
+  background: rgba(5, 15, 81, 0.9);
+  /* 不设置？ */
+  opacity: unset;
+}
+.el-dialog__headerbtn {
+  background: url("~assets/image/dialogClose.png") no-repeat center/100% 100%;
+  width: 70px;
+  height: 48px;
+}
+
+// *el-tree
+// 树滚动条显示与隐藏
+.el-tree::-webkit-scrollbar {
+  display: none;
+  /* transition: all 2s linear; */
+}
+.el-tree:hover::-webkit-scrollbar {
+  display: block;
+}
+.el-tree-node__content:hover {
+  background: linear-gradient(90deg, #162cad 0%, #02247914 100%) !important;
+}
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+  // background: linear-gradient(90deg, #162cad 0%, #02247914 100%) !important;
+  background: linear-gradient(90deg, #3b52d7 0%, rgb(0 0 0 / 0%) 100%);
+  border-radius: 22px;
+}
+.el-tree {
+  background: transparent !important;
+  color: #79c0ff !important;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+// *el_button
+.el-button span {
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+.el-button {
+  border: none;
+}
+// !不能这样设全局，不然hover动态效果无法实现
+// .el-button{
+// background: linear-gradient(180deg, #4B9FFF 0%, #276EFF 100%);
+// }
+
+// *el-input
+.el-input__inner {
+  border-color: #5d95ff;
+}
+
+// *el-tabs
+.el-tabs__nav-wrap::after {
+  background-color: transparent !important;
+}
+.el-tabs__nav-scroll {
+  padding-left: 40px;
+}
+.el-tabs__item {
+  color: #99b2ff !important;
+  font-size: 16px !important;
+}
+.el-tabs__item.is-active {
+  color: #d1ebff !important;
+}
+.el-tabs__header {
+  margin: 0 !important;
+  padding-bottom: 6px;
+
+  background: linear-gradient(180deg, #3c58bd 0%, #051d5c 97%, #436bd6 100%);
+}
+
+// *el-table
+.el-table {
+  cursor: pointer;
+}
+/*  字体颜色 */
+.el-table {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* 双数行背景颜色 (用cell-style代替)*/
+/* 表格背景透明 */
+.el-table,
+.el-table tr,
+.el-table__expanded-cell {
+  background-color: transparent !important;
+}
+/* 删除表格下横线 ？*/
+.el-table::before {
+  height: 0 !important;
+}
+.el-table td {
+  border-bottom: none !important;
+  // border-bottom: 1px solid #4c566b !important;
+}
+// 只border样式时才显示td的border
+// .el-table--border td {
+//   border-right: 1px solid #4c566b;
+//   border-bottom: 1px solid #4c566b !important;
+// }
+.el-table--border .el-table__cell {
+  border-right: 1px solid #4c566b;
+  border-bottom: 1px solid #4c566b !important;
+}
+// 表头去除border
+.el-table th {
+  border: none !important;
+}
+// 表格滚动条悬浮显示
+.el-table--scrollable-y .el-table__body-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.el-table--scrollable-y .el-table__body-wrapper:hover::-webkit-scrollbar {
+  display: block;
+}
+// 边框样式去掉
+.el-table::before,
+.el-table--group::after,
+.el-table--border::after {
+  background: none;
+}
+// 表格最外层边框去掉
+.el-table--border,
+.el-table--group {
+  border: none;
+}
+
+//*el-pagination
+.el-pagination__total {
+  color: #fff;
+}
+.el-pagination__jump {
+  color: #fff;
+}
+
+//*el-date-picker
+.el-picker-panel {
+  color: #ffffff;
+  background: #1f49bd;
+  border: none;
+  .el-date-picker__time-header {
+    border-bottom-color: #2255e2;
+  }
+}
+.el-date-picker__header-label {
+  color: #fff;
+}
+.el-date-table th {
+  color: #739eff;
+  border-bottom: none;
+}
+.el-picker-panel__footer {
+  background-color: #2d53bd;
+  border-top-color: #2255e2;
+  & > button:first-child {
+    color: #fff;
+  }
+  // .el-picker-panel__link-btn.el-button--default.el-button--mini.is-plain{
+  & > button:last-child {
+    color: #fff;
+    background: linear-gradient(180deg, #4b9fff 0%, #276eff 100%);
+  }
+}
+.el-date-table td.current:not(.disabled) span {
+  background-color: #4270f1;
+}
+
+//*el-message-box
+.el-message-box__wrapper {
+  top: -400px;
+}
+.el-message-box {
+  background: url("~assets/image/confirmMsgBg.png") no-repeat;
+  border-color: #385eb7;
+}
+.el-message-box__title {
+  color: #fff;
+}
+
+.el-message-box__content {
+  color: #fff;
+}
+
+//*el-checkbox
+.el-checkbox {
+  .el-checkbox__label {
+    color: #fff;
+  }
+}
+//* el-form
+.el-form-item__label {
+  color: #fff;
+}

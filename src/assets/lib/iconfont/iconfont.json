@@ -1,0 +1,72 @@
+{
+  "id": "2363557",
+  "name": "可视化",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "24461514",
+      "name": "后台配置",
+      "font_class": "houtaipeizhi",
+      "unicode": "e8ee",
+      "unicode_decimal": 59630
+    },
+    {
+      "icon_id": "8804714",
+      "name": "new",
+      "font_class": "new",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "17323170",
+      "name": "安全帽",
+      "font_class": "anquanmao1",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "18126649",
+      "name": "鸟",
+      "font_class": "niao",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "12268062",
+      "name": "区域入侵",
+      "font_class": "quyuruqin",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "19483350",
+      "name": "跌倒",
+      "font_class": "iconhuizong_huaban1fuben23",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2296309",
+      "name": "启动",
+      "font_class": "qidong",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8992612",
+      "name": "停止",
+      "font_class": "ttingzhi-",
+      "unicode": "e70b",
+      "unicode_decimal": 59147
+    },
+    {
+      "icon_id": "19939803",
+      "name": "暂停 停止 (4)",
+      "font_class": "zantingtingzhi4",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}

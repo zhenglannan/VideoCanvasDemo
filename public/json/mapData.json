@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "message": "成功",
+  "data": [
+      {
+          "regionid": "2",
+          "name": "温州市",
+          "value": 4
+      }
+  ]
+}

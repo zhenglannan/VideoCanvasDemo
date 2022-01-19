@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+  <div id="main" style="float: left;width:600px;height: 600px;background-color: #000000;"></div>
+  <div id="ret" style="float: left;margin-left:10px;width:100px;height: 100px;background-color: red;"
+    onclick="RetMap()"> 返回</div>
+  <!-- ECharts单文件引入 -->
+  <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+  <script type="text/javascript">
+    var LastTimeName = "江苏省";
+    var LastTimeUrl = "";
+    var TimeFn = null;
+    var returl = new Array();
+    var retname = new Array();
+    var objMap  = {
+      "江苏省": "https://geo.datav.aliyun.com/areas_v2/bound/320000_full.json",
+      "南京市": "https://geo.datav.aliyun.com/areas_v2/bound/320100_full.json",
+      "雨花台区": "https://geo.datav.aliyun.com/areas_v2/bound/320114.json",
+    };
+    var jsonurl = "https://geo.datav.aliyun.com/areas_v2/bound/320000_full.json";
+
+    var data = [
+      {
+        name: "徐州市",
+        value: 20,
+      },
+      {
+        name: "连云港市",
+        value: 20,
+      },
+      {
+        name: "宿迁市",
+        value: 11,
+      },
+      {
+        name: "淮安市",
+        value: 11,
+      },
+      {
+        name: "盐城市",
+        value: 11,
+      },
+      {
+        name: "扬州市",
+        value: 11,
+      },
+      {
+        name: "泰州市",
+        value: 11,
+      },
+      {
+        name: "南京市",
+        value: 11,
+      },
+      {
+        name: "镇江市",
+        value: 11,
+      },
+      {
+        name: "南通市",
+        value: 11,
+      },
+      {
+        name: "苏州市",
+        value: 11,
+      },
+      {
+        name: "无锡市",
+        value: 11,
+      },
+      {
+        name: "常州市",
+        value: 11,
+      },
+    ];
+    function GetMapJson(url) {
+      var RetJson;
+      $.ajaxSettings.async = false;//在执行之前加$.ajaxSettings.async = false;  (同步执行)
+      $.getJSON(url, function (date) {
+        RetJson = date;
+      });
+      $.ajaxSettings.async = true;//执行你的代码之后及时恢复为$.ajaxSettings.async = true； （异步执行）
+      return RetJson;
+    }
+
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.showLoading();
+    $.get(jsonurl, function (usaJson) {
+      myChart.hideLoading();
+      echarts.registerMap('jangsu', usaJson);
+      option = {
+        title: {
+          top: 20,
+          text: "江苏省",
+          left: "center",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+            var value = (params.value + '').split('.');
+            value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+            return params.seriesName + '<br/>' + params.name + ': ' + value;
+          }
+        },
+
+        series: [
+          {
+            // name: '江苏省',
+            type: 'map',
+            roam: true,
+            map: 'jangsu',
+            emphasis: {
+              label: {
+                show: true
+              }
+            },
+            // 文本位置修正
+            textFixed: {
+              Alaska: [20, -20]
+            },
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+
+      myChart.on('dblclick', function (chinaParam) {
+        clearTimeout(TimeFn);
+        //console.log(returl);
+        if (returl.length) {
+          var tmpreturl = returl.pop();
+          var tmpretjson = GetMapJson(tmpreturl);
+          if (tmpretjson != null) {
+            echarts.registerMap('nangjin2', tmpretjson);
+            var retoption = myChart.getOption();
+            retoption.series[0].map = 'nangjin2';
+            myChart.setOption(retoption);
+            LastTimeName = retname.pop();
+          } else {
+            alert("没有返回文件");
+          }
+        }
+      });
+
+      myChart.on('click', function (chinaParam) {//chinaParam与tooltip一样
+        console.log(chinaParam);
+        // 取消上次延时未执行的方法
+        clearTimeout(TimeFn);
+        //执行延时
+        TimeFn = setTimeout(function () {
+          var mapName = chinaParam.name;
+          if (mapName != LastTimeName) {
+
+            LastTimeUrl = objMap[LastTimeName];
+            var tmpurl = objMap[mapName];
+            var tmpjson = GetMapJson(tmpurl);
+
+            if (tmpjson != null ) {
+              returl.push(LastTimeUrl);
+              retname.push(LastTimeName);
+              LastTimeName = mapName;
+              
+              echarts.registerMap('nangjin1', tmpjson);
+              // var option = myChart.getOption();
+              option.series[0].map = 'nangjin1';
+              option.title.text = mapName;
+              myChart.setOption(option);
+              //首页其他组件全部根据chinaParam里得id重新获取
+            } else {
+              alert("没有地图文件");
+            }
+          }
+
+        }, 200);
+      });
+    });
+
+
+    //GetMap(jsonurl);
+
+    function RetMap() {
+      console.log(returl);
+      //GetMap(jsonurl);
+    }
+  </script>
+</body>
+
+</html>

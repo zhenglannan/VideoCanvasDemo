@@ -1,0 +1,139 @@
+﻿@import "assets/css/reset.css";
+// @import "assets/fonts/font.css";
+@import "styles/mixin.scss";
+
+:root {
+  --color-text: #75b1f7;
+  --color-high-text: #858fd1;
+  --color-tint: #858fd1;
+  --color-background: rgba(41, 59, 123, .6);
+  --font-size: 16px;
+  --line-height: 1.5;
+  --main-color: #75b1f7;
+} 
+input::-ms-clear{display:none;}/*删除文本框中的叉号*/
+input::-ms-reveal{display:none;} /*删除密码框中的小眼睛*/
+// .container{
+//   width: 100%;
+//   max-width: 1000px;
+//   margin: 40px auto;
+//   display: flex;
+//   flex-wrap: wrap;//flex 元素单行显示还是多行显示
+// }
+
+// 最外部容器
+// .dashboard-share-container {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+// }
+// .dashboard-share-container,.dashboard-share-background-image {
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+// }
+// 展示容器
+.dashboard-container {
+  position: relative;
+  user-select: none;
+  // width: 100%;
+  // height: 100%;
+  @include wh100;
+  transform-origin: 0 0; //从中心变化
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  transition: all 0.3s linear;
+  overflow: hidden;
+}
+// 展示图片
+.image-chart-container {
+  transform-origin: center center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: rgb(204, 204, 204);
+  font-size: 25px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+// 展示时间
+.time-chart-container {
+  // width: 100%;
+  // height: 100%;
+  @include wh100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+// 展示文字
+.simple-text-chart-container {
+  // width: 100%;
+  // height: 100%;
+  @include wh100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+@keyframes ball-scale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.ball-scale {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
+  height: 48px;
+  width: 48px;
+  // display: none;
+  background-color: #a2c7c59f;
+  background-image: radial-gradient(black, yellow, black);
+  border-radius: 100%;
+  animation: ball-scale 1s 0s ease-in-out infinite;
+}
+.SelectBox {
+  border: 1px solid yellow;
+}
+.UnselectBox {
+  border: 1px solid #4b63ba;
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(27,27,27,.4);
+  border-radius: 10px;
+  width: 6px; //y轴滚动条宽度
+  height:3px; //x轴滚动条高度
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px; //滚动条的圆角
+  background: #092a67; //滚动条的背景颜色
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px; //滚动条的背景区域的圆角
+  background: #98a9e0; //滚动条的背景颜色
+}
+
+.imgDialog{
+  mix-blend-mode: unset !important;
+}
+.imgDialog .el-dialog {
+  background: url("~assets/image/dialogBg3.png") no-repeat center/100% 100% ;
+}
+

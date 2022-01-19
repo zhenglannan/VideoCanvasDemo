@@ -1,0 +1,26 @@
+{
+  "code": 0,
+  "message": "成功",
+  "data": [
+      {
+          "img": "/map/2_2_2021-03-24-10-42-25.jpg",
+          "presetno": "2",
+          "presetnoname": "测试间-大门全景",
+          "regionid": "9",
+          "regionidname": "科创城1#配电房",
+          "sensorid": "2",
+          "sensoridname": "科创城1#球机",
+          "time": "2021-03-24 10:42:25"
+      },
+      {
+          "img": "/map/3_1_2021-03-24-10-58-28.jpg",
+          "presetno": "1",
+          "presetnoname": "风机联动柜子",
+          "regionid": "9",
+          "regionidname": "科创城1#配电房",
+          "sensorid": "3",
+          "sensoridname": "科创城2#球机",
+          "time": "2021-03-24 10:58:28"
+      }
+  ]
+}

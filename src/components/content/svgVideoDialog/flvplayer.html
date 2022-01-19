@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>flvplayer demo</title>
+    <style>
+
+    .VideoControl {
+        display: inline;
+        background-color: black;
+        object-fit: fill;
+        width: 640px;
+        height: 300px;
+    }
+
+    .ArrowButton {
+        width: 32px;
+        height: 32px;
+    }
+
+    @keyframes ball-scale {
+        0% {
+            transform: scale(0.0);
+        }
+        100% {
+            transform: scale(1.0);
+            opacity: 0;
+        }
+    }
+
+    .ball-scale {
+        height: 48px;
+        width: 48px;
+        display: none;
+        position: absolute;
+        background-color: #a2c7c59f;
+        background-image: radial-gradient(black, yellow,black);
+        border-radius: 100%;
+        animation: ball-scale 1s 0s ease-in-out infinite;
+    }
+
+    </style>
+
+    <!-- 引入这两个js -->
+    <script src="flv.min.js"></script>
+    <script src="flvplayer.js"></script>
+    <script>
+    var fp1 = null;
+    function flv_open() {
+        flv_close();
+
+        fp1 = new Flvplayer(document.getElementById("video1"));
+        var ip = document.getElementById("ip1").value;
+        var port = document.getElementById("port1").value;
+        var id = document.getElementById("id1").value;
+        var flag = document.getElementById("flag1").value;
+
+        fp1.onstatechanged = (state) => {
+            if (fp1) {
+                var d = document.getElementById("wait1");
+                d.style.display = state ? "none" : "block";
+                console.log("state changed: " + state);
+            }
+        }
+
+        var d = document.getElementById("wait1");
+        var p = document.getElementById("video1");
+        d.style.display = "block";
+        d.style.top = (p.offsetTop + (p.offsetHeight - d.offsetHeight) / 2) + "px";
+        d.style.left = (p.offsetLeft + (p.offsetWidth - d.offsetWidth) / 2) + "px";
+
+        fp1.open(ip, port, id, flag);
+    }
+    
+    function flv_close() {
+        if (fp1)
+            fp1.close();
+        fp1 = null;
+
+        var d = document.getElementById("wait1");
+        d.style.display = "none";
+    }
+
+    function ptz_control(cmd) {
+        if (fp1) {
+            var speed = document.getElementById("ctrlSpeed").value;
+            fp1.ptz(cmd, speed);
+        }
+    }
+    function ptz_stop() {
+        ptz_control(Flvplayer.PTZ_STOP);
+    }
+    // 设置预置位
+    function ptz_preset(cmd) {
+        if (fp1) {
+            var index = document.getElementById("ctrlIndex").value;
+            fp1.preset(cmd, index);
+        }
+    }
+    // function capture() {
+    //     if (fp1) {
+    //         var img = document.getElementById("imgCapture");
+    //         img.src = fp1.capture("image/jpeg", 60);
+    //     }
+    // }
+    
+    function flv_quit() {
+        var fp = new Flvplayer(null);
+        var ip = document.getElementById("ip1").value;
+        var port = document.getElementById("port1").value;
+        fp.quit(ip, port);
+    }
+    </script>
+</head>    
+
+<body>
+	  <div>
+        <div style="float:left">
+            <video id="video1" class="VideoControl">Your browser is too old which doesn't support HTML5 video.</video>
+            <div id="wait1" class="ball-scale"/>
+        </div>
+    
+        <div style="float:right">
+            <label for="ctrlSpeed">速度:</label>
+            <input id="ctrlSpeed" type="number" min="1" max="10" value="5"/>
+
+            <table>
+            <tr>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_LEFT_TOP)" onmouseup="ptz_stop()">↖</button></td>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_TOP)" onmouseup="ptz_stop()">↑</button></td>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_RIGHT_BOTTOM)" onmouseup="ptz_stop()">↗</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_LEFT)" onmouseup="ptz_stop()">←</button></td>
+                <td><button type="button" class="ArrowButton" onclick="ptz_control(Flvplayer.PTZ_STOP)">◉</button></td>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_RIGHT)" onmouseup="ptz_stop()">→</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_LEFT_BOTTOM)" onmouseup="ptz_stop()">↙</button></td>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_BOTTOM)" onmouseup="ptz_stop()">↓</button></td>
+                <td><button type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_RIGHT_BOTTOM)" onmouseup="ptz_stop()">↘</button></td>
+            </tr>
+            <tr>
+                <td><button title="放大" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_ZOOM_IN)" onmouseup="ptz_stop()">➕</button></td>
+                <td>距离</td>
+                <td><button title="缩小" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_ZOOM_OUT)" onmouseup="ptz_stop()">➖</button></td>
+            </tr>
+            <tr>
+                <td><button title="拉远" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_FOCUS_IN)" onmouseup="ptz_stop()">➕</button></td>
+                <td>焦距</td>
+                <td><button title="拉近" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_FOCUS_OUT)" onmouseup="ptz_stop()">➖</button></td>
+            </tr>
+            <tr>
+                <td><button title="光圈放大" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_APERTURE_INCREASE)" onmouseup="ptz_stop()">➕</button></td>
+                <td>光圈</td>
+                <td><button title="光圈缩小" type="button" class="ArrowButton" onmousedown="ptz_control(Flvplayer.PTZ_APERTURE_DECREASE)" onmouseup="ptz_stop()">➖</button></td>
+            </tr>
+            </table>
+        
+            <label for="ctrlIndex">预置位:</label>
+            <input id="ctrlIndex" type="number" min="0" max="255" value="1"/>
+            <table>
+                <tr><td><button type="button" class="ControlButton" onclick="ptz_preset(Flvplayer.PRESET_SET)">设置预置位</button></td></tr>
+                <tr><td><button type="button" class="ControlButton" onclick="ptz_preset(Flvplayer.CLEAR)">删除预置位</button></td></tr>
+                <!-- <tr><td><button type="button" class="ControlButton" onclick="ptz_preset(Flvplayer.PRESET_GOTO)">转到预置位</button></td></tr> -->
+            </table>
+            <!-- <button  type="button" class="ControlButton" onclick="capture()">抓图</button> -->
+        </div>
+    </div>
+    <div style="clear:both">
+        <label for="ip1">IP:</label>
+        <input id="ip1" type="text" style="width:100px" value="192.168.88.171" />
+        <label for="port1">PORT:</label>
+        <input id="port1" type="text" style="width:60px" value="8087" />
+        <label for="id1">ID:</label>
+        <input id="id1" type="text" style="width:60px" value="1" />
+        <label for="flag1">FLAG:</label>
+        <select id="flag1">
+          <option value="0" selected="true">主码流</option>
+          <option value="1">子码流</option>
+        </select>
+        <button onclick="flv_open()">开始</button>
+        <button onclick="flv_close()">停止</button>
+        <button onclick="flv_quit()">退出</button>
+    </div>
+    <img id="imgCapture" style="width: 640px;height: 480px;" />
+</body>
+</html>

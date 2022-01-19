@@ -1,2 +1,24 @@
-# VideoCanvasDemo
-测试项目里的视频监控增加坐标实时监控
+# 平台IOT（全部功能）
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

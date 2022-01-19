@@ -1,0 +1,224 @@
+﻿@import "../fonts/font.css";
+
+/**
+ * 
+ */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-weight: 400;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+a {
+  color: #262626;
+  text-decoration: none;
+  /* 定义当元素不面向屏幕时是否可见 */
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+}
+
+html,
+body {
+  /* ? */
+  width: 100%;
+  height: 100%;
+  /* 字体要下载专门的直接调用吗 */
+  /* font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif; */
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 16px;
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  /* transition: all 2s linear; */
+}
+body {
+  line-height: 1.15;
+  /* 控制将一些手机或平板设备上使用的文本溢出算法（text inflation algorithm）。其他类型的设备上的浏览器会忽略此属性。 */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden;
+}
+html {
+  /* overflow: hidden; */
+}
+
+/*清除浮动*/
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: inline-block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  /* zoom是IE专用属性,可以在IE6下清除浮动、解决margin导致的重叠等问题。 */
+  *zoom: 1;
+}
+
+/*隐藏*/
+.dn {
+  display: none;
+}
+input {
+  border: none;
+  outline: none;
+  outline-offset: none;
+  margin: 0;
+}
+button {
+  border: none;
+  outline: none;
+  outline-offset: none;
+  padding: 0;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+pre {
+  display: block;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  /* padding: 0;
+  margin: 0;
+  font-size: 15px;
+  line-height: inherit;
+  color: inherit; */
+  word-break: break-all;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+*,
+::before,
+::after,
+:before,
+:after {
+  box-sizing: border-box;
+}

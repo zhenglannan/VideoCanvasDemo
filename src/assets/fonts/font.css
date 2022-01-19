@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'DS-DIGI';
+  src:url('DS-DIGI.TTF') format('TTF'), 
+  local('DS-DIGI'), url("DS-DIGI.TTF");/***默认使用本地的***/
+}
+/* 首页数字 */
+@font-face {
+  font-family: 'LiGothicMed';
+  src:url('apple-ligothic-medium.ttf') format('ttf'), 
+  local('apple-ligoth ic-medium'), url("apple-ligothic-medium.ttf");/***默认使用本地的***/
+}
+/* 苹方-简 中粗体 */
+@font-face {
+  font-family: 'PingFangSC-Bold';
+  src:url('PingFang Bold.ttf') format('ttf'), 
+  local('PingFang Bold'), url("PingFang Bold.ttf");/***默认使用本地的***/
+}
+/*苹方-简 常规体*/
+@font-face {
+  font-family: 'PingFangSC-Regular';
+  src:url('PingFang Regular.ttf') format('ttf'), 
+  local('PingFang Regular'), url("PingFang Regular.ttf");/***默认使用本地的***/
+}
+/* 苹方-简 中黑体 */
+@font-face {
+  font-family: 'PingFangSC-Medium';
+  src:url('PingFang Medium.ttf') format('ttf'), 
+  local('PingFang Medium'), url("PingFang Medium.ttf");/***默认使用本地的***/
+}
